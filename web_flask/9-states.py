@@ -8,24 +8,15 @@ from flask import Flask, render_template
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-
 @app.route('/states')
-def states():
+@app.route('/states/<id>')
+def states(id):
     """
         Retern state object
         from route /states_list
     """
     states = storage.all("State")
-    return render_template('9-states.html', state_list=states)
-
-
-@app.route('/states/<id>')
-def states_id(id):
-    """Displays an HTML page with info about <id>, if it exists."""
-    for states in storage.all("State").values():
-        if states.id == id:
-            return render_template("9-states.html", state_list=states)
-    return render_template("9-states.html")
+    return render_template('9-states.html', state_list=states, id=id)
 
 
 @app.teardown_appcontext
