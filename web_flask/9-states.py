@@ -3,14 +3,15 @@
     Basic route script with variable default value
     with jinja templating and sqlalchemy
 """
-from models import storage
+from models import storage, State, City
 from flask import Flask, render_template
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
+
 @app.route('/states')
 @app.route('/states/<id>')
-def states(id):
+def states(id=None):
     """
         Retern state object
         from route /states_list
