@@ -20,14 +20,12 @@ def states():
 
 @app.route('/states')
 @app.route('/states/<id>')
-def states(id=None):
-    """
-        display the states and cities listed
-        """
-    states = storage.all("State")
-    if id is not None:
-        id = 'State.' + id
-    return render_template('9-states.html', state_list=states, id=id)
+def states_id(id):
+    """Displays an HTML page with info about <id>, if it exists."""
+    for state in storage.all("State").values():
+        if state.id == id:
+            return render_template("9-states.html", state_list=state)
+    return render_template("9-states.html")
 
 
 @app.teardown_appcontext
