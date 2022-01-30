@@ -11,12 +11,12 @@ app.url_map.strict_slashes = False
 
 @app.route('/states')
 @app.route('/states/<id>')
+@app.route('/states/<state_id>')
 def states(id=None):
-    """
-        Retern state object
-        from route /states_list
-    """
+    """display the states and cities listed in alphabetical order"""
     states = storage.all("State")
+    if id is not None:
+        id = 'State.' + id
     return render_template('9-states.html', state_list=states, id=id)
 
 
