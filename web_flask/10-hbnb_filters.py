@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route("/hbnb_filters", strict_slashes=False)
+@app.route("/hbnb_filters")
 def hbnb():
     """
         Display a HTML page like 6-index.html,
